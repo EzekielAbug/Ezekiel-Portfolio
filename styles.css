@@ -1642,7 +1642,57 @@ input, textarea {
 
 /* Responsive Design */
 
-/* Tablet (â‰¤ 1024px) */
+/* ========================
+   Large Desktop (> 1440px)
+   Scales content up for big monitors
+   ======================== */
+@media (min-width: 1441px) {
+  :root {
+    --container-max: 1320px;
+  }
+
+  .hero__title {
+    font-size: var(--font-size-6xl);
+  }
+
+  .hero__photo-wrapper {
+    width: 340px;
+    height: 340px;
+  }
+
+  .hero__description {
+    font-size: var(--font-size-xl);
+    max-width: 640px;
+  }
+
+  .section__title {
+    font-size: var(--font-size-5xl);
+  }
+}
+
+/* ========================
+   Ultra-wide (> 1920px)
+   Prevents content from stretching too thin
+   ======================== */
+@media (min-width: 1921px) {
+  :root {
+    --container-max: 1440px;
+  }
+
+  body {
+    font-size: 1.05rem;
+  }
+
+  .hero__photo-wrapper {
+    width: 380px;
+    height: 380px;
+  }
+}
+
+/* ========================
+   Tablet (max 1024px)
+   Two-column grids, smaller hero
+   ======================== */
 @media (max-width: 1024px) {
   .section__title {
     font-size: var(--font-size-3xl);
@@ -1679,7 +1729,10 @@ input, textarea {
   }
 }
 
-/* Mobile (â‰¤ 768px) */
+/* ========================
+   Mobile (max 768px)
+   Single column, hamburger nav, stacked hero
+   ======================== */
 @media (max-width: 768px) {
   :root {
     --container-padding: var(--space-4);
@@ -1759,9 +1812,55 @@ input, textarea {
     bottom: var(--space-4);
     right: var(--space-4);
   }
+
+  /* Make project card links always visible on touch devices */
+  .project-card__overlay {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  /* Timeline hover shift is awkward on touch — disable */
+  .timeline__content:hover {
+    transform: none;
+  }
+
+  /* Long contact email — prevent overflow */
+  .contact__method-value {
+    word-break: break-all;
+    font-size: var(--font-size-xs);
+  }
+
+  /* Contact info card: tighter padding */
+  .contact__info-card {
+    padding: var(--space-5);
+  }
+
+  /* Mobile menu: safe area for phones with notches */
+  .mobile-menu {
+    padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0)
+             env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
+  }
+
+  /* Cert card descriptions: let them wrap naturally */
+  .cert-card__desc {
+    font-size: var(--font-size-xs);
+  }
+
+  /* Skills category hover lift is awkward on touch */
+  .skills__category:hover {
+    transform: none;
+  }
+
+  /* Project card hover lift too */
+  .project-card:hover {
+    transform: none;
+  }
 }
 
-/* Small Mobile (â‰¤ 480px) */
+/* ========================
+   Small Mobile (max 480px)
+   Tighter spacing, smaller type
+   ======================== */
 @media (max-width: 480px) {
   .hero__title {
     font-size: var(--font-size-2xl);
@@ -1774,6 +1873,379 @@ input, textarea {
   .hero__photo-wrapper {
     width: 150px;
     height: 150px;
+  }
+
+  /* Tighter section padding */
+  .section {
+    padding: var(--space-12) 0;
+  }
+
+  .section__header {
+    margin-bottom: var(--space-8);
+  }
+
+  /* Smaller about card */
+  .about__card {
+    padding: var(--space-5);
+  }
+
+  .about__card-title {
+    font-size: var(--font-size-lg);
+  }
+
+  .about__card p {
+    font-size: var(--font-size-sm);
+  }
+
+  /* Smaller qualities */
+  .about__qualities {
+    padding: var(--space-4);
+  }
+
+  /* Timeline adjustments */
+  .timeline {
+    padding-left: var(--space-6);
+  }
+
+  .timeline__dot {
+    left: calc(-1 * var(--space-6) + 2px);
+    width: 10px;
+    height: 10px;
+  }
+
+  .timeline__content {
+    padding: var(--space-4);
+  }
+
+  .timeline__title {
+    font-size: var(--font-size-lg);
+  }
+
+  .timeline__duties li {
+    font-size: var(--font-size-xs);
+  }
+
+  /* Cert cards */
+  .cert-card {
+    padding: var(--space-4);
+  }
+
+  .cert-card__title {
+    font-size: var(--font-size-base);
+  }
+
+  /* Contact method strips smaller */
+  .contact__method {
+    padding: var(--space-2) var(--space-3);
+    gap: var(--space-3);
+  }
+
+  .contact__method-icon {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+  }
+
+  /* Buttons: slightly smaller */
+  .btn {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-sm);
+  }
+
+  /* Navbar: tighter */
+  .navbar__container {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  /* Footer: tighter */
+  .footer {
+    padding: var(--space-6) 0;
+  }
+
+  .footer__text {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* ========================
+   Extra Small (max 360px)
+   Very compact phones (Galaxy Fold, older SE, etc.)
+   ======================== */
+@media (max-width: 360px) {
+  :root {
+    --container-padding: var(--space-3);
+  }
+
+  .hero__title {
+    font-size: 1.35rem;
+  }
+
+  .section__title {
+    font-size: 1.35rem;
+  }
+
+  .hero__photo-wrapper {
+    width: 120px;
+    height: 120px;
+    border-width: 3px;
+  }
+
+  .hero__badge {
+    font-size: var(--font-size-xs);
+    padding: var(--space-1) var(--space-3);
+  }
+
+  .hero__description {
+    font-size: var(--font-size-sm);
+  }
+
+  /* Project card content tighter */
+  .project-card__content {
+    padding: var(--space-3);
+  }
+
+  .project-card__title {
+    font-size: var(--font-size-lg);
+  }
+
+  .project-card__meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
+  }
+
+  /* Skills */
+  .skills__category {
+    padding: var(--space-4);
+  }
+
+  .skills__category-header h3 {
+    font-size: var(--font-size-base);
+  }
+
+  /* About qualities */
+  .about__qualities-list li {
+    padding: var(--space-2) var(--space-3);
+  }
+
+  /* Mobile menu: smaller text */
+  .mobile-menu__link {
+    font-size: var(--font-size-xl);
+  }
+
+  .mobile-menu__cta {
+    font-size: var(--font-size-base);
+    padding: var(--space-2) var(--space-6);
+  }
+
+  /* Tags: slightly smaller */
+  .tag {
+    font-size: 0.65rem;
+    padding: 2px var(--space-2);
+  }
+
+  /* Contact */
+  .contact__info-card h3 {
+    font-size: var(--font-size-lg);
+  }
+
+  /* Timeline: minimal indent */
+  .timeline {
+    padding-left: var(--space-5);
+  }
+
+  .timeline__dot {
+    left: calc(-1 * var(--space-5) + 2px);
+    width: 8px;
+    height: 8px;
+  }
+
+  .timeline__content {
+    padding: var(--space-3);
+  }
+
+  .timeline__title {
+    font-size: var(--font-size-base);
+  }
+
+  .timeline__date {
+    font-size: var(--font-size-xs);
+  }
+
+  .timeline__description {
+    font-size: var(--font-size-xs);
+  }
+
+  .timeline__tags {
+    gap: var(--space-1);
+  }
+}
+
+/* ========================
+   Landscape Mobile
+   When phone is rotated horizontally —
+   shorter viewport height, wider width
+   ======================== */
+@media (max-height: 500px) and (orientation: landscape) {
+  /* Hero shouldn't force full height in landscape */
+  .hero {
+    min-height: auto;
+    padding-top: 70px;
+    padding-bottom: var(--space-8);
+  }
+
+  /* Horizontal hero layout in landscape — side by side */
+  .hero__layout {
+    flex-direction: row;
+    text-align: left;
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  .hero__photo-wrapper {
+    width: 140px;
+    height: 140px;
+  }
+
+  .hero__badge {
+    align-self: flex-start;
+  }
+
+  .hero__socials {
+    justify-content: flex-start;
+  }
+
+  .hero__title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .hero__description {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-4);
+  }
+
+  .hero__actions {
+    flex-direction: row;
+    margin-bottom: var(--space-4);
+  }
+
+  .hero__actions .btn {
+    width: auto;
+  }
+
+  .hero__scroll {
+    display: none;
+  }
+
+  /* Sections: tighter padding in landscape */
+  .section {
+    padding: var(--space-10) 0;
+  }
+
+  /* Mobile menu: scroll if links overflow in landscape */
+  .mobile-menu {
+    overflow-y: auto;
+    padding-top: 70px;
+  }
+
+  .mobile-menu__links {
+    gap: var(--space-3);
+  }
+
+  .mobile-menu__link {
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* ========================
+   Landscape Tablet
+   Wider viewport but shorter height
+   ======================== */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding-top: 90px;
+    padding-bottom: var(--space-10);
+  }
+
+  .hero__layout {
+    flex-direction: row;
+  }
+
+  .hero__photo-wrapper {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* ========================
+   Tall phones / notch handling
+   Extra bottom margin for phones with gesture bars
+   ======================== */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .back-to-top {
+    bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .footer {
+    padding-bottom: calc(var(--space-8) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .mobile-menu {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+}
+
+/* ========================
+   Print styles
+   Clean output for anyone who prints the page
+   ======================== */
+@media print {
+  .navbar,
+  .mobile-menu,
+  .back-to-top,
+  .hero__bg,
+  .hero__scroll,
+  .loader {
+    display: none !important;
+  }
+
+  body {
+    color: #000;
+    background: #fff;
+  }
+
+  .section {
+    padding: 1rem 0;
+    break-inside: avoid;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 1rem 0;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+}
+
+/* ========================
+   High contrast / forced-colors
+   Respects Windows high contrast and similar modes
+   ======================== */
+@media (forced-colors: active) {
+  .btn--primary {
+    border: 2px solid ButtonText;
+  }
+
+  .skill-item__fill {
+    background: Highlight;
+  }
+
+  .timeline__dot {
+    background: Highlight;
   }
 }
 
