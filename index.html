@@ -686,78 +686,101 @@
           <h2 class="section__title">Credentials &<br />Certificates</h2>
         </div>
 
-        <div class="certs__grid">
-          <!-- Certification 1 -->
-          <a href="assets/cert-ai-fundamentals.pdf" target="_blank" rel="noopener noreferrer"
-            class="cert-card cert-card--link animate-on-scroll">
-            <div class="cert-card__icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="8" r="7"></circle>
-                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-              </svg>
-            </div>
-            <span class="cert-card__date">2026</span>
-            <h3 class="cert-card__title">AI Fundamentals</h3>
-            <p class="cert-card__issuer">Online Course Certificate</p>
-            <p class="cert-card__desc">Completed training in artificial intelligence fundamentals, covering core AI
-              concepts, machine learning, and practical applications.</p>
-            <span class="cert-card__view">View Certificate →</span>
-          </a>
+        <div class="certs__carousel animate-on-scroll" id="certs-carousel">
+          <!-- Navigation Arrows -->
+          <button class="certs__arrow certs__arrow--prev" id="certs-prev" aria-label="Previous certificate" disabled>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
 
-          <!-- Certification 2 -->
-          <a href="assets/cert-cybersecurity.pdf" target="_blank" rel="noopener noreferrer"
-            class="cert-card cert-card--link animate-on-scroll">
-            <div class="cert-card__icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="8" r="7"></circle>
-                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-              </svg>
-            </div>
-            <span class="cert-card__date">2026</span>
-            <h3 class="cert-card__title">Introduction to Cybersecurity</h3>
-            <p class="cert-card__issuer">Online Course Certificate</p>
-            <p class="cert-card__desc">Gained foundational knowledge in cybersecurity principles, threat identification,
-              network security, and best practices for digital protection.</p>
-            <span class="cert-card__view">View Certificate →</span>
-          </a>
+          <button class="certs__arrow certs__arrow--next" id="certs-next" aria-label="Next certificate">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 6 15 12 9 18"></polyline>
+            </svg>
+          </button>
 
-          <!-- Certification 3 -->
-          <a href="assets/cert-data-science.pdf" target="_blank" rel="noopener noreferrer"
-            class="cert-card cert-card--link animate-on-scroll">
-            <div class="cert-card__icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="8" r="7"></circle>
-                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-              </svg>
-            </div>
-            <span class="cert-card__date">2026</span>
-            <h3 class="cert-card__title">Introduction to Data Science</h3>
-            <p class="cert-card__issuer">Online Course Certificate</p>
-            <p class="cert-card__desc">Explored data science workflows including data analysis, visualization, and
-              introductory statistical methods for deriving insights from data.</p>
-            <span class="cert-card__view">View Certificate →</span>
-          </a>
+          <!-- Carousel Viewport -->
+          <div class="certs__viewport">
+            <div class="certs__track" id="certs-track">
+              <!-- Certification 1 -->
+              <a href="assets/cert-ai-fundamentals.pdf" target="_blank" rel="noopener noreferrer"
+                class="cert-card cert-card--link">
+                <div class="cert-card__icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="7"></circle>
+                    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                  </svg>
+                </div>
+                <span class="cert-card__date">2026</span>
+                <h3 class="cert-card__title">AI Fundamentals</h3>
+                <p class="cert-card__issuer">Online Course Certificate</p>
+                <p class="cert-card__desc">Completed training in artificial intelligence fundamentals, covering core AI
+                  concepts, machine learning, and practical applications.</p>
+                <span class="cert-card__view">View Certificate →</span>
+              </a>
 
-          <!-- Certification 4 -->
-          <a href="assets/cert-network-defense.pdf" target="_blank" rel="noopener noreferrer"
-            class="cert-card cert-card--link animate-on-scroll">
-            <div class="cert-card__icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="8" r="7"></circle>
-                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-              </svg>
+              <!-- Certification 2 -->
+              <a href="assets/cert-cybersecurity.pdf" target="_blank" rel="noopener noreferrer"
+                class="cert-card cert-card--link">
+                <div class="cert-card__icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="7"></circle>
+                    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                  </svg>
+                </div>
+                <span class="cert-card__date">2026</span>
+                <h3 class="cert-card__title">Introduction to Cybersecurity</h3>
+                <p class="cert-card__issuer">Online Course Certificate</p>
+                <p class="cert-card__desc">Gained foundational knowledge in cybersecurity principles, threat identification,
+                  network security, and best practices for digital protection.</p>
+                <span class="cert-card__view">View Certificate →</span>
+              </a>
+
+              <!-- Certification 3 -->
+              <a href="assets/cert-data-science.pdf" target="_blank" rel="noopener noreferrer"
+                class="cert-card cert-card--link">
+                <div class="cert-card__icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="7"></circle>
+                    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                  </svg>
+                </div>
+                <span class="cert-card__date">2026</span>
+                <h3 class="cert-card__title">Introduction to Data Science</h3>
+                <p class="cert-card__issuer">Online Course Certificate</p>
+                <p class="cert-card__desc">Explored data science workflows including data analysis, visualization, and
+                  introductory statistical methods for deriving insights from data.</p>
+                <span class="cert-card__view">View Certificate →</span>
+              </a>
+
+              <!-- Certification 4 -->
+              <a href="assets/cert-network-defense.pdf" target="_blank" rel="noopener noreferrer"
+                class="cert-card cert-card--link">
+                <div class="cert-card__icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="7"></circle>
+                    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                  </svg>
+                </div>
+                <span class="cert-card__date">2026</span>
+                <h3 class="cert-card__title">Network Defense</h3>
+                <p class="cert-card__issuer">Online Course Certificate</p>
+                <p class="cert-card__desc">Learned key network defense strategies including firewall configuration,
+                  intrusion detection, secure network architecture, and incident response best practices.</p>
+                <span class="cert-card__view">View Certificate →</span>
+              </a>
             </div>
-            <span class="cert-card__date">2026</span>
-            <h3 class="cert-card__title">Network Defense</h3>
-            <p class="cert-card__issuer">Online Course Certificate</p>
-            <p class="cert-card__desc">Learned key network defense strategies including firewall configuration,
-              intrusion detection, secure network architecture, and incident response best practices.</p>
-            <span class="cert-card__view">View Certificate →</span>
-          </a>
+          </div>
+
+          <!-- Dot Indicators -->
+          <div class="certs__dots" id="certs-dots" role="tablist" aria-label="Certificate navigation"></div>
         </div>
       </div>
     </section>

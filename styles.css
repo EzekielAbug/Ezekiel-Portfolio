@@ -1535,26 +1535,124 @@ input, textarea {
 }
 
 
-/* Certifications Section */
-.certs__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6);
+/* Certifications Carousel */
+.certs__carousel {
+  position: relative;
+  padding: 0 60px; /* Space for arrow buttons */
+}
+
+.certs__viewport {
+  overflow: hidden;
+  clip-path: inset(0 round var(--radius-lg));
+}
+
+.certs__track {
+  display: flex;
+  gap: 40px;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.certs__track .cert-card {
+  min-width: 100%;
+  width: 100%;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Arrow Buttons */
+.certs__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: background var(--transition-fast),
+              border-color var(--transition-fast),
+              color var(--transition-fast),
+              transform var(--transition-fast),
+              opacity var(--transition-fast),
+              box-shadow var(--transition-fast);
+  backdrop-filter: blur(10px);
+}
+
+.certs__arrow--prev {
+  left: 0;
+}
+
+.certs__arrow--next {
+  right: 0;
+}
+
+.certs__arrow:hover:not(:disabled) {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  box-shadow: var(--shadow-glow);
+}
+
+.certs__arrow:active:not(:disabled) {
+  transform: translateY(-50%) scale(0.92);
+}
+
+.certs__arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Dot Indicators */
+.certs__dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+}
+
+.certs__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: var(--color-border-hover);
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--transition-fast),
+              transform var(--transition-fast),
+              width var(--transition-fast);
+}
+
+.certs__dot:hover {
+  background: var(--color-primary);
+  transform: scale(1.2);
+}
+
+.certs__dot.is-active {
+  background: var(--color-primary);
+  width: 28px;
+  border-radius: var(--radius-full);
 }
 
 .cert-card {
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: var(--space-6);
+  padding: var(--space-8);
   text-align: center;
   transition: border-color var(--transition-fast),
-              transform var(--transition-fast),
               box-shadow var(--transition-fast);
 }
 .cert-card:hover {
   border-color: var(--color-primary);
-  transform: translateY(-4px);
   box-shadow: var(--shadow-glow);
 }
 
@@ -1597,6 +1695,9 @@ input, textarea {
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   line-height: 1.6;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Clickable cert cards */
@@ -1720,8 +1821,8 @@ input, textarea {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .certs__grid {
-    grid-template-columns: repeat(2, 1fr);
+  .certs__carousel {
+    padding: 0 50px;
   }
 
   .contact__grid {
@@ -1792,8 +1893,18 @@ input, textarea {
     grid-template-columns: 1fr;
   }
 
-  .certs__grid {
-    grid-template-columns: 1fr;
+  .certs__carousel {
+    padding: 0 40px;
+  }
+
+  .certs__arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* Disable hover lift on touch */
+  .cert-card:hover {
+    transform: none;
   }
 
   .hero__actions {
@@ -1934,6 +2045,34 @@ input, textarea {
     font-size: var(--font-size-base);
   }
 
+  /* Carousel: tighter spacing, overlay arrows */
+  .certs__carousel {
+    padding: 0 12px;
+  }
+
+  .certs__arrow {
+    width: 32px;
+    height: 32px;
+    background: rgba(var(--color-primary-rgb), 0.85);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .certs__arrow:disabled {
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-tertiary);
+  }
+
+  .certs__dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .certs__dot.is-active {
+    width: 22px;
+  }
+
   /* Contact method strips smaller */
   .contact__method {
     padding: var(--space-2) var(--space-3);
@@ -1993,6 +2132,25 @@ input, textarea {
   .hero__badge {
     font-size: var(--font-size-xs);
     padding: var(--space-1) var(--space-3);
+  }
+
+  /* Extra-small carousel: overlay arrows on top of card */
+  .certs__carousel {
+    padding: 0;
+  }
+
+  .certs__arrow {
+    width: 30px;
+    height: 30px;
+    z-index: 3;
+  }
+
+  .certs__arrow--prev {
+    left: var(--space-2);
+  }
+
+  .certs__arrow--next {
+    right: var(--space-2);
   }
 
   .hero__description {

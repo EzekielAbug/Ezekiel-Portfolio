@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSkillBars();
   initBackToTop();
   initContactForm();
+  initCertsCarousel();
   initFooterYear();
 });
 
@@ -674,6 +675,120 @@ function initContactForm() {
     el.className = `form__status is-${type}`;
     el.textContent = message;
   }
+}
+
+
+
+// Certifications Carousel
+
+function initCertsCarousel() {
+  const track = document.getElementById('certs-track');
+  const prevBtn = document.getElementById('certs-prev');
+  const nextBtn = document.getElementById('certs-next');
+  const dotsContainer = document.getElementById('certs-dots');
+  const carousel = document.getElementById('certs-carousel');
+
+  if (!track || !prevBtn || !nextBtn || !dotsContainer || !carousel) return;
+
+  const cards = track.querySelectorAll('.cert-card');
+  const totalSlides = cards.length;
+  let currentIndex = 0;
+
+  // Build dot indicators
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('button');
+    dot.className = 'certs__dot' + (i === 0 ? ' is-active' : '');
+    dot.setAttribute('role', 'tab');
+    dot.setAttribute('aria-label', `Go to certificate ${i + 1}`);
+    dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    dot.addEventListener('click', () => goToSlide(i));
+    dotsContainer.appendChild(dot);
+  }
+
+  const dots = dotsContainer.querySelectorAll('.certs__dot');
+
+  function getSlideOffset(index) {
+    // Measure actual card width + gap for pixel-perfect sliding
+    if (!cards.length) return 0;
+    const cardWidth = cards[0].offsetWidth;
+    const trackStyle = getComputedStyle(track);
+    const gap = parseFloat(trackStyle.gap) || 0;
+    return index * (cardWidth + gap);
+  }
+
+  function goToSlide(index) {
+    if (index < 0 || index >= totalSlides) return;
+    currentIndex = index;
+
+    // Pixel-based slide for precise alignment
+    const offset = getSlideOffset(currentIndex);
+    track.style.transform = `translateX(-${offset}px)`;
+
+    // Update dots
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('is-active', i === currentIndex);
+      dot.setAttribute('aria-selected', i === currentIndex ? 'true' : 'false');
+    });
+
+    // Update arrow states — disable at boundaries
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex === totalSlides - 1;
+  }
+
+  // Recalculate on resize so the slide stays aligned
+  window.addEventListener('resize', debounce(() => {
+    const offset = getSlideOffset(currentIndex);
+    track.style.transition = 'none';
+    track.style.transform = `translateX(-${offset}px)`;
+    // Re-enable transition after reflow
+    requestAnimationFrame(() => {
+      track.style.transition = '';
+    });
+  }, 150));
+
+  // Arrow click handlers
+  prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+  nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+  // Keyboard navigation when carousel is focused or hovered
+  carousel.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      goToSlide(currentIndex - 1);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      goToSlide(currentIndex + 1);
+    }
+  });
+
+  // Make carousel focusable for keyboard nav
+  carousel.setAttribute('tabindex', '0');
+  carousel.setAttribute('role', 'region');
+  carousel.setAttribute('aria-label', 'Certifications carousel');
+
+  // Touch / swipe support
+  let touchStartX = 0;
+  let touchEndX = 0;
+  const SWIPE_THRESHOLD = 50;
+
+  track.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  track.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+
+    if (Math.abs(diff) > SWIPE_THRESHOLD) {
+      if (diff > 0) {
+        // Swiped left — go next
+        goToSlide(currentIndex + 1);
+      } else {
+        // Swiped right — go prev
+        goToSlide(currentIndex - 1);
+      }
+    }
+  }, { passive: true });
 }
 
 
