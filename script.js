@@ -64,6 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initCertsCarousel();
   initFooterYear();
+
+  // UI Enhancements
+  
+  initScrollProgressBar();
+  initTiltEffect();
+  initHeroOrbs();
 });
 
 
@@ -817,5 +823,101 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+// ==========================================
+// UI / UX Enhancements
+// ==========================================
 
+// Scroll Progress Bar
+function initScrollProgressBar() {
+  const progressBar = document.getElementById('scroll-progress');
+  if (!progressBar) return;
 
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercent = scrollTop / docHeight;
+        
+        progressBar.style.transform = `scaleX(${scrollPercent})`;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
+// 3D Tilt Effect
+function initTiltEffect() {
+  const tiltElements = document.querySelectorAll('.project-card, .cert-card');
+  if (!tiltElements.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!matchMedia('(pointer: fine)').matches) return;
+
+  const MAX_TILT = 8; 
+
+  tiltElements.forEach(el => {
+    el.addEventListener('mouseenter', () => el.style.transition = 'none');
+    el.addEventListener('mousemove', (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left; 
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const tiltX = ((y - centerY) / centerY) * -MAX_TILT;
+      const tiltY = ((x - centerX) / centerX) * MAX_TILT;
+
+      el.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+
+    el.addEventListener('mouseleave', () => {
+      el.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+    });
+  });
+}
+
+// Mouse-tracking Hero Orbs
+function initHeroOrbs() {
+  const heroSection = document.getElementById('hero');
+  const orbs = document.querySelectorAll('.hero__orb');
+  if (!heroSection || !orbs.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!matchMedia('(pointer: fine)').matches) return;
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let currentOrbs = Array.from(orbs).map(() => ({ x: 0, y: 0 }));
+  
+  heroSection.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX / window.innerWidth;
+    mouseY = e.clientY / window.innerHeight;
+  });
+
+  const render = () => {
+    const targetOffsetX = (mouseX - 0.5) * 50; 
+    const targetOffsetY = (mouseY - 0.5) * 50;
+    
+    // Lerp logic for pure fluidity
+    if(orbs[0]) {
+      currentOrbs[0].x += (targetOffsetX - currentOrbs[0].x) * 0.05;
+      currentOrbs[0].y += (targetOffsetY - currentOrbs[0].y) * 0.05;
+      orbs[0].style.transform = `translate(${currentOrbs[0].x}px, ${currentOrbs[0].y}px)`;
+    }
+    if(orbs[1]) {
+      currentOrbs[1].x += (-targetOffsetX * 1.5 - currentOrbs[1].x) * 0.05;
+      currentOrbs[1].y += (-targetOffsetY * 1.5 - currentOrbs[1].y) * 0.05;
+      orbs[1].style.transform = `translate(${currentOrbs[1].x}px, ${currentOrbs[1].y}px)`;
+    }
+    if(orbs[2]) {
+      currentOrbs[2].x += (targetOffsetX * 0.8 - currentOrbs[2].x) * 0.05;
+      currentOrbs[2].y += (-targetOffsetY * 0.8 - currentOrbs[2].y) * 0.05;
+      orbs[2].style.transform = `translate(${currentOrbs[2].x}px, ${currentOrbs[2].y}px)`;
+    }
+    
+    requestAnimationFrame(render);
+  };
+  requestAnimationFrame(render);
+}

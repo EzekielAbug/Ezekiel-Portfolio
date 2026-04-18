@@ -19,6 +19,10 @@
 
   <title>Ezekiel Abug — Portfolio</title>
 
+  <!-- Preload Critical Assets -->
+  <link rel="preload" href="assets/headshot.png" as="image" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style" />
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,6 +34,7 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -43,6 +48,7 @@
 
   <!-- Navigation -->
   <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
     <div class="navbar__container">
       <!-- Logo / Brand -->
       <a href="#hero" class="navbar__logo" id="nav-logo" aria-label="Go to top">
@@ -320,39 +326,43 @@
             <div class="skills__list">
               <div class="skill-item">
                 <div class="skill-item__header">
-                  <span class="skill-item__name">HTML</span>
+                  <span class="skill-item__name"><i class='bx bxl-html5 skill-icon-inline' aria-hidden="true"></i> HTML</span>
                   <span class="skill-item__level">Intermediate</span>
                 </div>
                 <div class="skill-item__bar">
                   <div class="skill-item__fill" data-width="65"></div>
                 </div>
+
               </div>
               <div class="skill-item">
                 <div class="skill-item__header">
-                  <span class="skill-item__name">CSS</span>
+                  <span class="skill-item__name"><i class='bx bxl-css3 skill-icon-inline' aria-hidden="true"></i> CSS</span>
                   <span class="skill-item__level">Intermediate</span>
                 </div>
                 <div class="skill-item__bar">
                   <div class="skill-item__fill" data-width="60"></div>
                 </div>
+
               </div>
               <div class="skill-item">
                 <div class="skill-item__header">
-                  <span class="skill-item__name">JavaScript</span>
+                  <span class="skill-item__name"><i class='bx bxl-javascript skill-icon-inline' aria-hidden="true"></i> JavaScript</span>
                   <span class="skill-item__level">Intermediate</span>
                 </div>
                 <div class="skill-item__bar">
                   <div class="skill-item__fill" data-width="60"></div>
                 </div>
+
               </div>
               <div class="skill-item">
                 <div class="skill-item__header">
-                  <span class="skill-item__name">Flutter / Dart</span>
+                  <span class="skill-item__name"><i class='bx bxl-flutter skill-icon-inline' aria-hidden="true"></i> Flutter / Dart</span>
                   <span class="skill-item__level">Intermediate</span>
                 </div>
                 <div class="skill-item__bar">
                   <div class="skill-item__fill" data-width="55"></div>
                 </div>
+
               </div>
             </div>
           </div>
@@ -374,30 +384,33 @@
             <div class="skills__list">
               <div class="skill-item">
                 <div class="skill-item__header">
-                  <span class="skill-item__name">Node.js</span>
+                  <span class="skill-item__name"><i class='bx bxl-nodejs skill-icon-inline' aria-hidden="true"></i> Node.js</span>
                   <span class="skill-item__level">Intermediate</span>
                 </div>
                 <div class="skill-item__bar">
                   <div class="skill-item__fill" data-width="55"></div>
                 </div>
+
               </div>
               <div class="skill-item">
                 <div class="skill-item__header">
-                  <span class="skill-item__name">REST APIs</span>
+                  <span class="skill-item__name"><i class='bx bx-server skill-icon-inline' aria-hidden="true"></i> REST APIs</span>
                   <span class="skill-item__level">Intermediate</span>
                 </div>
                 <div class="skill-item__bar">
                   <div class="skill-item__fill" data-width="55"></div>
                 </div>
+
               </div>
               <div class="skill-item">
                 <div class="skill-item__header">
-                  <span class="skill-item__name">MySQL</span>
+                  <span class="skill-item__name"><i class='bx bx-data skill-icon-inline' aria-hidden="true"></i> MySQL</span>
                   <span class="skill-item__level">Intermediate</span>
                 </div>
                 <div class="skill-item__bar">
                   <div class="skill-item__fill" data-width="60"></div>
                 </div>
+
               </div>
             </div>
           </div>
@@ -418,30 +431,33 @@
             <div class="skills__list">
               <div class="skill-item">
                 <div class="skill-item__header">
-                  <span class="skill-item__name">Java</span>
+                  <span class="skill-item__name"><i class='bx bxl-java skill-icon-inline' aria-hidden="true"></i> Java</span>
                   <span class="skill-item__level">Intermediate</span>
                 </div>
                 <div class="skill-item__bar">
                   <div class="skill-item__fill" data-width="60"></div>
                 </div>
+
               </div>
               <div class="skill-item">
                 <div class="skill-item__header">
-                  <span class="skill-item__name">Visual Basic</span>
+                  <span class="skill-item__name"><i class='bx bx-code skill-icon-inline' aria-hidden="true"></i> Visual Basic</span>
                   <span class="skill-item__level">Intermediate</span>
                 </div>
                 <div class="skill-item__bar">
                   <div class="skill-item__fill" data-width="55"></div>
                 </div>
+
               </div>
               <div class="skill-item">
                 <div class="skill-item__header">
-                  <span class="skill-item__name">Git / GitHub</span>
+                  <span class="skill-item__name"><i class='bx bxl-github skill-icon-inline' aria-hidden="true"></i> Git / GitHub</span>
                   <span class="skill-item__level">Intermediate</span>
                 </div>
                 <div class="skill-item__bar">
                   <div class="skill-item__fill" data-width="55"></div>
                 </div>
+
               </div>
             </div>
           </div>
@@ -905,6 +921,7 @@
       <polyline points="18 15 12 9 6 15"></polyline>
     </svg>
   </button>
+
 
   <!-- Main Script -->
   <script src="script.js" defer></script>
